@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>pl.koszela.jan</groupId>
+  <artifactId>RefactorToPattern</artifactId>
+  <packaging>jar</packaging>
+  <version>0.1.0</version>
+
+  <name>Refactor to Pattern - excercises</name>
+  <url>http://maven.apache.org</url>
+
+
+  <properties>
+    <app.name>RefactorToPattern</app.name>
+
+    <assertj.version>RELEASE</assertj.version>
+    <junit.version>LATEST</junit.version>
+    <mockito.version>2.8.9</mockito.version>
+
+    <maven.dependency.version>3.0.0</maven.dependency.version>
+    <maven.compiler.version>3.6.1</maven.compiler.version>
+    <jdk.version>1.8</jdk.version>
+
+    <lombok.version>1.16.18</lombok.version>
+
+    <maven.compiler.source>${jdk.version}</maven.compiler.source>
+    <maven.compiler.target>${jdk.version}</maven.compiler.target>
+
+    <tomcat.plugin.version>2.2</tomcat.plugin.version>
+  </properties>
+
+  <build>
+    <finalName>${app.name}</finalName>
+
+    <plugins>
+
+      <!-- Set JDK Compiler Level -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.version}</version>
+        <configuration>
+          <source>${jdk.version}</source>
+          <target>${jdk.version}</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>${maven.dependency.version}</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}</outputDirectory>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>true</overWriteSnapshots>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+  <dependencies>
+
+    <!-- TESTING -->
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <!-- use 2.6.0 for Java 7 projects -->
+      <version>${assertj.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Unit Test -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito.version}</version>
+    </dependency>
+
+  </dependencies>
+
+</project>
